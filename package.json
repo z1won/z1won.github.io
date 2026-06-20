@@ -1,0 +1,19 @@
+{
+  "name": "z1won-portfolio",
+  "version": "1.0.0",
+  "description": "Portfolio and Technical Blog by z1won",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^4.13.0",
+    "svelte": "^4.2.0"
+  },
+  "devDependencies": {
+    "@astrojs/svelte": "^5.0.0"
+  }
+}
