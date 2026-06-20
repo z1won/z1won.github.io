@@ -21,20 +21,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # 1. pnpm 설치 설정
+      # 1. pnpm 설치 (캐시 기능 없이 순수 설치)
       - name: Install pnpm
         uses: pnpm/action-setup@v4
         with:
           version: 9
 
-      # 2. Node.js 24 설정 및 pnpm 캐시 연동
+      # 2. Node.js 24 설정 (락 파일을 강제 요구하는 cache 옵션 제거)
       - name: Setup Node.js 24
         uses: actions/setup-node@v4
         with:
           node-version: 24
-          cache: 'pnpm'
 
-      # 3. 의존성 패키지 설치 (락 파일 미검출 에러 해결)
+      # 3. 의존성 패키지 설치 (락 파일 없이 빌드 허용)
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
 
