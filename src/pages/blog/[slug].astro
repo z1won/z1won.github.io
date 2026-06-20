@@ -1,7 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 
-// --- ✅ 수정 1: Astro 빌드를 위해 getStaticPaths 함수 추가 ---
 export async function getStaticPaths() {
   return [
     { params: { slug: 'astro-svelte-portfolio' } },
@@ -83,20 +82,19 @@ if (!post) {
       <h1>{post.title}</h1>
       <div class="post-meta">
         <span class="date">{new Date(post.date).toLocaleDateString('ko-KR')}</span>
-        <span class="separator">•</span>
+        <span class="separator">/</span>
         <span class="category">{post.category}</span>
-        <span class="separator">•</span>
+        <span class="separator">/</span>
         <span class="read-time">{post.readTime}</span>
       </div>
     </header>
 
-    <!-- --- ✅ 수정 2: 태그 속성 형태로 set:html 사용법 올바르게 변경 --- -->
     <div class="post-content" set:html={post.content}></div>
 
     <footer class="post-footer">
-      <p>작성자: {post.author}</p>
-      <p>
-        <a href="/blog">← 블로그로 돌아가기</a>
+      <p class="author">Written by {post.author}</p>
+      <p class="back-link-wrapper">
+        <a href="/blog" class="back-link">← 목록으로 돌아가기</a>
       </p>
     </footer>
   </article>
@@ -104,107 +102,125 @@ if (!post) {
 
 <style>
   .blog-post {
-    max-width: 800px;
+    max-width: 760px;
     margin: 0 auto;
+    padding: 2rem 0;
   }
 
+  /* 헤더: 그라데이션 제거, 플랫한 타이포그래피 강조 */
   .post-header {
     margin-bottom: 3rem;
     padding-bottom: 2rem;
-    border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+    border-bottom: 1px solid #2a2a30;
   }
 
   .post-header h1 {
-    font-size: clamp(2rem, 5vw, 3rem);
-    margin: 0 0 1rem 0;
-    background: linear-gradient(135deg, #06b6d4, #3b82f6);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    font-size: clamp(2rem, 4.5vw, 2.75rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin: 0 0 1.25rem 0;
+    color: #f4f4f5;
   }
 
   .post-meta {
     display: flex;
-    gap: 1rem;
-    color: #94a3b8;
-    font-size: 0.95rem;
+    gap: 0.75rem;
+    color: #a1a1aa;
+    font-size: 0.9rem;
+    font-weight: 500;
     align-items: center;
   }
 
   .separator {
-    color: rgba(148, 163, 184, 0.3);
+    color: #3f3f46;
   }
 
+  /* 본문 콘텐츠 스타일 플랫화 */
   .post-content {
-    margin: 2rem 0;
+    margin: 2.5rem 0;
     color: #cbd5e1;
     line-height: 1.8;
+    font-size: 1.05rem;
   }
 
   :global(.post-content h1) {
-    display: none; /* 제목은 위에서 이미 렌더링했으므로 본문 내부 h1은 숨김 */
+    display: none;
   }
 
   :global(.post-content h2) {
     color: #06b6d4;
-    margin: 2rem 0 1rem 0;
-    font-size: 1.8rem;
+    margin: 3rem 0 1.25rem 0;
+    font-size: 1.6rem;
+    font-weight: 700;
   }
 
   :global(.post-content h3) {
-    color: #cbd5e1;
-    margin: 1.5rem 0 1rem 0;
-    font-size: 1.3rem;
+    color: #f4f4f5;
+    margin: 2rem 0 1rem 0;
+    font-size: 1.25rem;
+    font-weight: 700;
   }
 
   :global(.post-content p) {
-    margin: 1rem 0;
+    margin: 1.25rem 0;
   }
 
   :global(.post-content ul),
   :global(.post-content ol) {
-    margin: 1rem 0;
-    padding-left: 2rem;
+    margin: 1.25rem 0;
+    padding-left: 1.5rem;
   }
 
   :global(.post-content li) {
     margin: 0.5rem 0;
   }
 
+  /* 코드 블록 스킨 리뉴얼 */
+   Aurora 느낌의 백그라운드를 깔끔한 다크 플랫 보더 블록으로 통일 */
   :global(.post-content code) {
-    background: rgba(148, 163, 184, 0.1);
-    border: 1px solid rgba(148, 163, 184, 0.2);
+    background: #1a1a1e;
+    border: 1px solid #2a2a30;
     border-radius: 4px;
     padding: 0.2rem 0.4rem;
-    color: #fbbf24;
+    color: #ea580c;
+    font-size: 0.9em;
   }
 
   :global(.post-content pre) {
-    background: rgba(15, 23, 42, 0.8);
-    border: 1px solid rgba(148, 163, 184, 0.2);
-    border-radius: 8px;
-    padding: 1.5rem;
+    background: #1a1a1e;
+    border: 1px solid #2a2a30;
+    border-radius: 4px;
+    padding: 1.25rem;
     overflow-x: auto;
+    margin: 1.5rem 0;
   }
 
+  /* 푸터 영역 마감 */
   .post-footer {
-    margin-top: 3rem;
+    margin-top: 5rem;
     padding-top: 2rem;
-    border-top: 1px solid rgba(148, 163, 184, 0.2);
-    color: #cbd5e1;
+    border-top: 1px solid #2a2a30;
   }
 
-  .post-footer p {
-    margin: 0.5rem 0;
+  .author {
+    color: #71717a;
+    font-size: 0.9rem;
+    font-weight: 500;
   }
 
-  .post-footer a {
+  .back-link-wrapper {
+    margin-top: 2rem !important;
+  }
+
+  .back-link {
     color: #06b6d4;
-    text-decoration: none;
     font-weight: 600;
+    font-size: 0.95rem;
+    transition: color 0.15s ease;
   }
 
-  .post-footer a:hover {
+  .back-link:hover {
+    color: #22d3ee;
     text-decoration: underline;
   }
 </style>
