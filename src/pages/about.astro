@@ -16,17 +16,21 @@ const skills = [
     </div>
 
     <div class="about-content">
-      <section class="about-section">
+      <!-- Who I Am 섹션: 배경 박스를 없애고 과감한 레프트 라인으로 포인트 -->
+      <section class="about-section info-section">
         <h2>Who I Am</h2>
-        <p>
-          안녕하세요! 저는 풀스택 웹 개발자이자 기술 블로거입니다. 
-          최��� 웹 기술을 배우고, 좋은 코드를 작성하고, 그 경험을 공유하는 것을 좋아합니다.
-        </p>
-        <p>
-          사용자 경험을 중시하며, 성능이 우수한 웹애플리케이션을 만드는 것을 목표로 하고 있습니다.
-        </p>
+        <div class="text-group">
+          <p>
+            안녕하세요! 저는 풀스택 웹 개발자이자 기술 블로거입니다. 
+            최신 웹 기술을 배우고, 좋은 코드를 작성하고, 그 경험을 공유하는 것을 좋아합니다.
+          </p>
+          <p>
+            사용자 경험을 중시하며, 성능이 우수한 웹 애플리케이션을 만드는 것을 목표로 하고 있습니다.
+          </p>
+        </div>
       </section>
 
+      <!-- Skills 섹션: 그리드 보더를 활용한 미니멀리즘 디자인 -->
       <section class="about-section">
         <h2>Skills</h2>
         <div class="skills-grid">
@@ -43,15 +47,20 @@ const skills = [
         </div>
       </section>
 
+      <!-- Experience 섹션: 타임라인 선을 연상케 하는 간결한 하단 보더 레이아웃 -->
       <section class="about-section">
         <h2>Experience</h2>
-        <div class="experience-item">
-          <h3>Web Developer</h3>
-          <p class="company">Your Company</p>
-          <p class="period">2024 - Present</p>
-          <p class="description">
-            웹 애플리케이션 개발 및 유지보수를 담당하고 있습니다.
-          </p>
+        <div class="experience-list">
+          <div class="experience-item">
+            <div class="exp-header">
+              <h3>Web Developer</h3>
+              <p class="period">2024 - Present</p>
+            </div>
+            <p class="company">Your Company</p>
+            <p class="description">
+              웹 애플리케이션 개발 및 유지보수를 담당하고 있습니다.
+            </p>
+          </div>
         </div>
       </section>
     </div>
@@ -62,122 +71,175 @@ const skills = [
   .about-container {
     max-width: 900px;
     margin: 0 auto;
+    padding: 2rem 0;
   }
 
+  /* 헤더: 입체적인 그라데이션 텍스트를 깔끔한 솔리드 매트 화이트로 통일 */
   .about-header {
-    text-align: center;
+    text-align: left; /* 2026 플랫 디자인의 정렬 트렌드 반영 */
     margin-bottom: 4rem;
+    border-bottom: 1px solid #2a2a30;
+    padding-bottom: 2rem;
   }
 
   .about-header h1 {
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    margin-bottom: 1rem;
-    background: linear-gradient(135deg, #06b6d4, #3b82f6);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.03em;
+    color: #f4f4f5;
   }
 
   .about-header p {
-    font-size: 1.2rem;
-    color: #cbd5e1;
+    font-size: 1.1rem;
+    color: #a1a1aa;
   }
 
   .about-content {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: 4rem;
   }
 
+  /* 섹션 공통: 어두운 투명 박스 배경을 지우고, 보더 라인으로만 구별 */
   .about-section {
-    padding: 2rem;
-    background: rgba(30, 41, 59, 0.5);
-    border: 1px solid rgba(148, 163, 184, 0.2);
-    border-radius: 12px;
+    padding: 0;
+    background: none;
+    border: none;
+    border-radius: 0;
   }
 
   .about-section h2 {
     color: #06b6d4;
-    margin-bottom: 1.5rem;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 2rem;
+  }
+
+  .text-group {
+    border-left: 2px solid #2a2a30;
+    padding-left: 1.5rem;
   }
 
   .about-section p {
     color: #cbd5e1;
     line-height: 1.8;
     margin-bottom: 1rem;
+    font-size: 1.05rem;
   }
 
+  .about-section p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* 스킬 대시보드: 솔리드 테두리로 컴팩트하게 면 분할 */
   .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .skill-category {
+    background: #1a1a1e;
+    border: 1px solid #2a2a30;
+    border-radius: 4px;
+    padding: 1.5rem;
   }
 
   .skill-category h3 {
-    color: #06b6d4;
-    margin-bottom: 1rem;
+    color: #f4f4f5;
+    margin-bottom: 1.25rem;
     font-size: 1.1rem;
+    font-weight: 700;
+    border-bottom: 1px solid #2a2a30;
+    padding-bottom: 0.5rem;
   }
 
   .skill-category ul {
     list-style: none;
     padding: 0;
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
   }
 
   .skill-category li {
-    padding: 0.5rem 0;
-    color: #cbd5e1;
+    font-size: 0.95rem;
+    color: #a1a1aa;
+    padding-left: 1rem;
     position: relative;
-    padding-left: 1.5rem;
   }
 
+  /* 화살표 모양 대신 미니멀한 플랫 스퀘어 닷(Dot) 포인트 */
   .skill-category li::before {
-    content: '→';
+    content: '';
     position: absolute;
     left: 0;
-    color: #06b6d4;
-    font-weight: bold;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 4px;
+    background-color: #06b6d4;
+  }
+
+  /* 경력 리스트 레이아웃 */
+  .experience-list {
+    border: 1px solid #2a2a30;
+    border-radius: 4px;
+    background: #1a1a1e;
+    padding: 2rem;
   }
 
   .experience-item {
-    padding: 1.5rem 0;
-    border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+    padding: 0;
   }
 
-  .experience-item:last-child {
-    border-bottom: none;
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.5rem;
   }
 
   .experience-item h3 {
-    margin: 0 0 0.5rem 0;
-    color: #e2e8f0;
+    margin: 0;
+    color: #f4f4f5;
     font-size: 1.2rem;
+    font-weight: 700;
   }
 
   .company {
-    margin: 0;
+    margin: 0 0 1rem 0;
     color: #06b6d4;
     font-weight: 600;
+    font-size: 0.95rem;
   }
 
   .period {
-    margin: 0.5rem 0 1rem 0 !important;
-    color: #94a3b8;
-    font-size: 0.9rem;
+    color: #71717a;
+    font-size: 0.9srem;
+    font-weight: 500;
   }
 
   .description {
-    margin: 0 !important;
-    color: #cbd5e1;
+    color: #a1a1aa !important;
+    font-size: 0.95rem;
+    line-height: 1.6;
   }
 
   @media (max-width: 768px) {
-    .about-section {
-      padding: 1.5rem;
+    .about-header {
+      margin-bottom: 3rem;
     }
-
+    
+    .exp-header {
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    
     .skills-grid {
       grid-template-columns: 1fr;
     }
