@@ -1,0 +1,210 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const { slug } = Astro.params;
+
+const posts: Record<string, any> = {
+  'astro-svelte-portfolio': {
+    title: 'Astro와 Svelte로 포트폴리오 만들기',
+    date: '2026-06-20',
+    category: 'Tutorial',
+    author: 'z1won',
+    readTime: '10 min',
+    content: `
+# Astro와 Svelte로 포트폴리오 만들기
+
+## 소개
+
+Astro와 Svelte를 조합하면 매우 빠르고 대화형인 웹사이트를 만들 수 있습니다.
+
+### 주요 특징
+
+- **초고속**: Zero JavaScript by default
+- **현대적**: 최신 웹 기술 활용
+- **SEO 친화**: 정적 HTML 생성
+- **개발 경험**: 뛰어난 DX
+
+## 시작하기
+
+여기에 더 많은 내용을 작성하세요...
+    `
+  },
+  'deploy-github-pages': {
+    title: 'GitHub Pages에 정적 사이트 배포하기',
+    date: '2026-06-19',
+    category: 'DevOps',
+    author: 'z1won',
+    readTime: '8 min',
+    content: `
+# GitHub Pages에 정적 사이트 배포하기
+
+## 개요
+
+GitHub Pages를 사용하면 무료로 정적 웹사이트를 호스팅할 수 있습니다.
+
+## 배포 과정
+
+자세한 내용을 여기에 작성하세요...
+    `
+  },
+  'web-performance-optimization': {
+    title: '웹 성능 최적화: Core Web Vitals 개선하기',
+    date: '2026-06-18',
+    category: 'Performance',
+    author: 'z1won',
+    readTime: '12 min',
+    content: `
+# 웹 성능 최적화: Core Web Vitals 개선하기
+
+## Core Web Vitals란?
+
+Core Web Vitals은 Google에서 정의한 웹 성능 지표입니다.
+
+### 세 가지 핵심 지표
+
+1. **LCP (Largest Contentful Paint)**: 로딩 성능
+2. **FID (First Input Delay)**: 상호작용 반응성
+3. **CLS (Cumulative Layout Shift)**: 시각적 안정성
+
+## 최적화 방법
+
+자세한 내용을 여기에 작성하세요...
+    `
+  }
+};
+
+const post = posts[slug];
+
+if (!post) {
+  return Astro.redirect('/blog');
+}
+---
+
+<Layout title={post.title} description={post.title}>
+  <article class="blog-post">
+    <header class="post-header">
+      <h1>{post.title}</h1>
+      <div class="post-meta">
+        <span class="date">{new Date(post.date).toLocaleDateString('ko-KR')}</span>
+        <span class="separator">•</span>
+        <span class="category">{post.category}</span>
+        <span class="separator">•</span>
+        <span class="read-time">{post.readTime}</span>
+      </div>
+    </header>
+
+    <div class="post-content">
+      <set:html={post.content} />
+    </div>
+
+    <footer class="post-footer">
+      <p>작성자: {post.author}</p>
+      <p>
+        <a href="/blog">← 블로그로 돌아가기</a>
+      </p>
+    </footer>
+  </article>
+</Layout>
+
+<style>
+  .blog-post {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .post-header {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+  }
+
+  .post-header h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin: 0 0 1rem 0;
+    background: linear-gradient(135deg, #06b6d4, #3b82f6);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .post-meta {
+    display: flex;
+    gap: 1rem;
+    color: #94a3b8;
+    font-size: 0.95rem;
+    align-items: center;
+  }
+
+  .separator {
+    color: rgba(148, 163, 184, 0.3);
+  }
+
+  .post-content {
+    margin: 2rem 0;
+    color: #cbd5e1;
+    line-height: 1.8;
+  }
+
+  :global(.post-content h2) {
+    color: #06b6d4;
+    margin: 2rem 0 1rem 0;
+    font-size: 1.8rem;
+  }
+
+  :global(.post-content h3) {
+    color: #cbd5e1;
+    margin: 1.5rem 0 1rem 0;
+    font-size: 1.3rem;
+  }
+
+  :global(.post-content p) {
+    margin: 1rem 0;
+  }
+
+  :global(.post-content ul),
+  :global(.post-content ol) {
+    margin: 1rem 0;
+    padding-left: 2rem;
+  }
+
+  :global(.post-content li) {
+    margin: 0.5rem 0;
+  }
+
+  :global(.post-content code) {
+    background: rgba(148, 163, 184, 0.1);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    border-radius: 4px;
+    padding: 0.2rem 0.4rem;
+    color: #fbbf24;
+  }
+
+  :global(.post-content pre) {
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    border-radius: 8px;
+    padding: 1.5rem;
+    overflow-x: auto;
+  }
+
+  .post-footer {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(148, 163, 184, 0.2);
+    color: #cbd5e1;
+  }
+
+  .post-footer p {
+    margin: 0.5rem 0;
+  }
+
+  .post-footer a {
+    color: #06b6d4;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .post-footer a:hover {
+    text-decoration: underline;
+  }
+</style>

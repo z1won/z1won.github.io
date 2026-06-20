@@ -1,0 +1,73 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import BlogCard from '../../components/BlogCard.svelte';
+
+const blogPosts = [
+  {
+    title: 'Astro와 Svelte로 포트폴리오 만들기',
+    slug: 'astro-svelte-portfolio',
+    date: '2026-06-20',
+    category: 'Tutorial',
+    excerpt: 'Astro와 Svelte를 사용하여 초고속 포트폴리오 웹사이트를 만드는 방법을 배워봅시다.',
+    readTime: '10 min'
+  },
+  {
+    title: 'GitHub Pages에 정적 사이트 배포하기',
+    slug: 'deploy-github-pages',
+    date: '2026-06-19',
+    category: 'DevOps',
+    excerpt: 'GitHub Pages를 사용하여 프로젝트를 무료로 호스팅하는 방법을 알아봅시다.',
+    readTime: '8 min'
+  },
+  {
+    title: '웹 성능 최적화: Core Web Vitals 개선하기',
+    slug: 'web-performance-optimization',
+    date: '2026-06-18',
+    category: 'Performance',
+    excerpt: 'Core Web Vitals을 개선하여 웹사이트 성능을 극대화하는 방법을 소개합니다.',
+    readTime: '12 min'
+  }
+];
+---
+
+<Layout title="Blog" description="z1won's technical blog">
+  <div class="blog-hero">
+    <h1>Technical Blog</h1>
+    <p>웹 개발, 성능 최적화, 그리고 새로운 기술에 대한 글들을 공유합니다</p>
+  </div>
+
+  <div class="grid grid-2">
+    {blogPosts.map(post => (
+      <BlogCard
+        client:load
+        title={post.title}
+        slug={post.slug}
+        date={post.date}
+        category={post.category}
+        excerpt={post.excerpt}
+        readTime={post.readTime}
+      />
+    ))}
+  </div>
+</Layout>
+
+<style>
+  .blog-hero {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .blog-hero h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #06b6d4, #3b82f6);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .blog-hero p {
+    font-size: 1.2rem;
+    color: #cbd5e1;
+  }
+</style>

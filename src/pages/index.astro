@@ -1,0 +1,114 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.svelte';
+import BlogCard from '../components/BlogCard.svelte';
+import ProjectCard from '../components/ProjectCard.svelte';
+
+const recentPosts = [
+  {
+    title: 'Astro와 Svelte로 포트폴리오 만들기',
+    slug: 'astro-svelte-portfolio',
+    date: '2026-06-20',
+    category: 'Tutorial',
+    excerpt: 'Astro와 Svelte를 사용하여 초고속 포트폴리오 웹사이트를 만드는 방법을 배워봅시다.',
+    readTime: '10 min'
+  },
+  {
+    title: 'GitHub Pages에 정적 사이트 배포하기',
+    slug: 'deploy-github-pages',
+    date: '2026-06-19',
+    category: 'DevOps',
+    excerpt: 'GitHub Pages를 사용하여 프로젝트를 무료로 호스팅하는 방법을 알아봅시다.',
+    readTime: '8 min'
+  }
+];
+
+const projects = [
+  {
+    title: 'Portfolio Website',
+    description: 'Astro와 Svelte로 만든 개인 포트폴리오 및 기술 블로그 웹사이트',
+    link: 'https://z1won.github.io',
+    github: 'https://github.com/z1won/z1won.github.io',
+    tags: ['Astro', 'Svelte', 'GitHub Pages'],
+    image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=500&h=300&fit=crop'
+  }
+];
+---
+
+<Layout title="Home" description="Welcome to z1won's portfolio and technical blog">
+  <Hero
+    client:load
+    title="안녕하세요, z1won입니다"
+    subtitle="Full-stack Developer | Technical Writer | Open Source Enthusiast"
+    cta_text="포트폴리오 보기"
+    cta_link="/portfolio"
+  />
+
+  <!-- Featured Projects -->
+  <section class="featured-section">
+    <h2 class="section-title">Featured Projects</h2>
+    <div class="grid grid-2">
+      {projects.map(project => (
+        <ProjectCard
+          client:load
+          title={project.title}
+          description={project.description}
+          link={project.link}
+          github={project.github}
+          tags={project.tags}
+          image={project.image}
+        />
+      ))}
+    </div>
+  </section>
+
+  <!-- Recent Blog Posts -->
+  <section class="blog-section">
+    <h2 class="section-title">Latest Blog Posts</h2>
+    <div class="grid grid-2">
+      {recentPosts.map(post => (
+        <BlogCard
+          client:load
+          title={post.title}
+          slug={post.slug}
+          date={post.date}
+          category={post.category}
+          excerpt={post.excerpt}
+          readTime={post.readTime}
+        />
+      ))}
+    </div>
+    <div class="view-all">
+      <a href="/blog" class="view-all-link">모든 포스트 보기 →</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .featured-section,
+  .blog-section {
+    margin-bottom: 6rem;
+  }
+
+  .view-all {
+    text-align: center;
+    margin-top: 3rem;
+  }
+
+  .view-all-link {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    background: rgba(6, 182, 212, 0.1);
+    border: 2px solid rgba(6, 182, 212, 0.3);
+    border-radius: 6px;
+    color: #06b6d4;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+
+  .view-all-link:hover {
+    background: rgba(6, 182, 212, 0.2);
+    border-color: rgba(6, 182, 212, 0.6);
+    transform: translateY(-2px);
+  }
+</style>
