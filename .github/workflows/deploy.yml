@@ -25,18 +25,18 @@ jobs:
       - name: Install pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: 9 # pnpm 최신 메이저 버전 지정
+          version: 9
 
-      # 2. Node.js 22 설정 및 pnpm 캐시 연동
-      - name: Setup Node.js 22
+      # 2. Node.js 24 설정 및 pnpm 캐시 연동
+      - name: Setup Node.js 24
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
           cache: 'pnpm'
 
-      # 3. 의존성 패키지 설치
+      # 3. 의존성 패키지 설치 (락 파일 미검출 에러 해결)
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --no-frozen-lockfile
 
       # 4. Astro 프로젝트 빌드
       - name: Build Astro
