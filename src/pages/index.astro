@@ -44,7 +44,6 @@ const projects = [
     cta_link="/portfolio"
   />
 
-  <!-- Featured Projects -->
   <section class="featured-section">
     <h2 class="section-title">Featured Projects</h2>
     <div class="grid grid-2">
@@ -62,7 +61,6 @@ const projects = [
     </div>
   </section>
 
-  <!-- Recent Blog Posts -->
   <section class="blog-section">
     <h2 class="section-title">Latest Blog Posts</h2>
     <div class="grid grid-2">
@@ -78,8 +76,9 @@ const projects = [
         />
       ))}
     </div>
+    
     <div class="view-all">
-      <a href="/blog" class="view-all-link">모든 포스트 보기 →</a>
+      <a href="/blog" class="view-all-link">모든 포스트 보기</a>
     </div>
   </section>
 </Layout>
@@ -87,28 +86,30 @@ const projects = [
 <style>
   .featured-section,
   .blog-section {
-    margin-bottom: 6rem;
+    margin-bottom: 5rem;
   }
 
   .view-all {
     text-align: center;
-    margin-top: 3rem;
+    margin-top: 3.5rem;
   }
 
+  /* 2026 플랫 가이드: 입체적인 패딩박스 대신 깔끔한 아웃라인 보더와 시선 집중 효과 */
   .view-all-link {
     display: inline-block;
-    padding: 0.8rem 2rem;
-    background: rgba(6, 182, 212, 0.1);
-    border: 2px solid rgba(6, 182, 212, 0.3);
-    border-radius: 6px;
-    color: #06b6d4;
+    padding: 0.75rem 2rem;
+    background-color: transparent;
+    border: 1px solid #2a2a30;
+    border-radius: 4px;
+    color: #a1a1aa;
+    font-size: 0.95rem;
     font-weight: 600;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
   }
 
   .view-all-link:hover {
-    background: rgba(6, 182, 212, 0.2);
-    border-color: rgba(6, 182, 212, 0.6);
-    transform: translateY(-2px);
+    color: #06b6d4;
+    border-color: #06b6d4;
+    background-color: #1a1a1e;
   }
 </style>
